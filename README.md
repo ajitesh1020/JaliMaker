@@ -1,6 +1,6 @@
 # JaliMaker – CNC Grill / Jali GCode Generator
 
-> **By Indus Robotics** | MIT License | LinuxCNC compatible
+> **By Ajitesh Kannojia** | MIT License | LinuxCNC compatible
 
 ---
 
