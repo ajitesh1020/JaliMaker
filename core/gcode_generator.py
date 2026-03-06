@@ -58,10 +58,23 @@ class GCodeGenerator:
     # ── File I/O ──────────────────────────────────────────────────────────────
 
     def save_all(self, gcode_dict: dict, out_dir: Path, base_name: str = "jali") -> List[Path]:
-        """Write non-empty GCode lists to .ngc files; return saved paths."""
+        """
+        Write non-empty GCode sections to .ngc files and return the saved paths.
+
+        File naming convention (LinuxCNC compatible):
+            <base_name>_TOP.ngc
+            <base_name>_BOTTOM.ngc
+            <base_name>_PINNING.ngc
+            <base_name>_BORDER.ngc
+        """
         out_dir.mkdir(parents=True, exist_ok=True)
         saved = []
-        suffixes = {"top": "top", "bottom": "bottom", "pin": "pin", "border": "border"}
+        suffixes = {
+            "top":    "TOP",
+            "bottom": "BOTTOM",
+            "pin":    "PINNING",
+            "border": "BORDER",
+        }
         for key, lines in gcode_dict.items():
             if lines:
                 path = out_dir / f"{base_name}_{suffixes[key]}.ngc"
