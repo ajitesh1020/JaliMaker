@@ -55,8 +55,8 @@ See [CHANGELOG.md](CHANGELOG.md) for full version history.
 ### Quick Start
 
 ```bash
-git clone https://github.com/indus-robotics/jali-maker.git
-cd jali-maker
+git clone https://github.com/ajitesh1020/JaliMaker.git
+cd jaliMaker
 pip install -r requirements.txt
 python main.py
 ```
@@ -73,7 +73,7 @@ jalimaker
 ## Project Structure
 
 ```
-jali-maker/
+jaliMaker/
 ├── main.py                  # Entry point
 ├── grill_config.ini         # Auto-created config (do not delete)
 ├── requirements.txt
