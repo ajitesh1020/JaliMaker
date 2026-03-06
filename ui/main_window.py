@@ -711,8 +711,24 @@ class MainWindow(QMainWindow):
 
     def _on_save_gcode(self):
         if not self._gcode_dict or not self._calc_results:
+            QMessageBox.warning(self, "No GCode", "Please run Calculate first.")
             return
 
+        # ── Step 1: ask for base file name ────────────────────────────────────
+        from PySide6.QtWidgets import QInputDialog
+        base_name, ok = QInputDialog.getText(
+            self,
+            "Save GCode – File Name",
+            "Enter base file name (without extension):
+"
+            "Files will be saved as  <name>_TOP.ngc  /  <name>_BOTTOM.ngc  /  <name>_PINNING.ngc",
+            text="jali",
+        )
+        if not ok or not base_name.strip():
+            return
+        base_name = base_name.strip()
+
+        # ── Step 2: pick output folder ────────────────────────────────────────
         out_dir = QFileDialog.getExistingDirectory(
             self, "Select Output Folder",
             self._config.get("APP", "last_gcode_dir", str(Path.home())),
@@ -723,13 +739,14 @@ class MainWindow(QMainWindow):
         self._config.set("APP", "last_gcode_dir", out_dir)
         self._config.save()
 
+        # ── Step 3: save with user-supplied base name ─────────────────────────
         gen = GCodeGenerator()
-        saved = gen.save_all(self._gcode_dict, Path(out_dir))
+        saved = gen.save_all(self._gcode_dict, Path(out_dir), base_name=base_name)
 
         msg = "Saved GCode files:\n" + "\n".join(f"• {p.name}" for p in saved)
         QMessageBox.information(self, "GCode Saved", msg)
-        self._status_label.setText(f"GCode saved to {out_dir}")
-        logger.info(f"GCode saved to {out_dir}: {[str(p) for p in saved]}")
+        self._status_label.setText(f"GCode saved → {out_dir}")
+        logger.info(f"GCode saved to {out_dir} base='{base_name}': {[str(p) for p in saved]}")
 
     # ── Config helpers ────────────────────────────────────────────────────────
 
