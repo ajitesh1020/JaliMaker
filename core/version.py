@@ -6,7 +6,7 @@ Controlled via GitHub tags - fetched at runtime if network available.
 
 APP_NAME = "JaliMaker"
 COMPANY  = "Ajitesh Kannojia"
-VERSION  = "3.3.1"
+VERSION  = "3.3.2"
 BUILD_DATE = "2025-01-01"
 LICENSE  = "MIT"
 GITHUB_REPO = "ajitesh1020/JaliMaker"
