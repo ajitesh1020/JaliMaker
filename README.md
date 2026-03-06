@@ -31,7 +31,11 @@ JaliMaker is an industrial-grade Python application for generating LinuxCNC-comp
 
 See [CHANGELOG.md](CHANGELOG.md) for full version history.
 
-### v3.3.1 (latest)
+### v3.3.2 (latest)
+- Feat: Save GCode now asks for a base filename via QInputDialog
+- Feat: output files named <name>_TOP.ngc / _BOTTOM.ngc / _PINNING.ngc / _BORDER.ngc"
+
+### v3.3.1 
 - Fixed startup crash: `AttributeError: _preview` / `le_size_x` — widget construction order
 - Fixed `DeprecationWarning` for `AA_UseHighDpiPixmaps` (Qt6 removed it)
 - Dimension input boxes enlarged (height 34 px, font 15 px bold) for easier entry
