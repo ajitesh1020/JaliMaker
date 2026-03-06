@@ -719,8 +719,7 @@ class MainWindow(QMainWindow):
         base_name, ok = QInputDialog.getText(
             self,
             "Save GCode – File Name",
-            "Enter base file name (without extension):
-"
+            "Enter base file name (without extension):"
             "Files will be saved as  <name>_TOP.ngc  /  <name>_BOTTOM.ngc  /  <name>_PINNING.ngc",
             text="jali",
         )
