@@ -6,6 +6,33 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [3.3.2] – 2025-05-30
+
+### Changed
+
+#### `ui/main_window.py` — Save GCode dialog
+- **Save GCode now asks for a base file name** before selecting the output folder.
+  A `QInputDialog` prompt appears first with default text `jali`. The entered name
+  is passed as `base_name` to `GCodeGenerator.save_all()`.
+- Added guard: shows a warning if Calculate has not been run yet instead of
+  silently doing nothing.
+
+#### `core/gcode_generator.py` — File naming convention
+- **Suffix format changed to uppercase with LinuxCNC-standard naming**:
+  - `<name>_TOP.ngc` (was `jali_top.ngc`)
+  - `<name>_BOTTOM.ngc` (was `jali_bottom.ngc`)
+  - `<name>_PINNING.ngc` (was `jali_pin.ngc`)
+  - `<name>_BORDER.ngc` (was `jali_border.ngc`)
+
+### Files changed
+| File | Change |
+|------|--------|
+| `ui/main_window.py` | Added filename prompt before folder picker |
+| `core/gcode_generator.py` | Updated suffixes to `_TOP` / `_BOTTOM` / `_PINNING` / `_BORDER` |
+| `core/version.py` | Bumped 3.3.1 → 3.3.2 |
+
+---
+
 ## [3.3.1] – 2025-05-30
 
 ### Bug Fixes
